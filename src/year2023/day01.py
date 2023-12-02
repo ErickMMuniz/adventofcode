@@ -6,7 +6,10 @@ import numpy as np
 
 # AoC => AdventOfCode
 DAY_AoC = os.path.basename(__file__).split(".")[0]
-INPUT_AoC = os.path.join(os.getcwd(), "src", "2023", "inputs", "{}.txt".format(DAY_AoC))
+INPUT_AoC = os.path.join(
+    os.getcwd(), "src", "year2023", "inputs", "{}.txt".format(DAY_AoC)
+)
+INPUTS = np.loadtxt(INPUT_AoC, dtype=str)
 
 VALID_NUMBERS = {
     "one": 1,
@@ -45,15 +48,13 @@ def extract_head_and_last_digit_with_words(text: Text) -> int:
     return int("".join([to_number(head), to_number(last)]))
 
 
-if __name__ == "__main__":
-    inputs = np.loadtxt(INPUT_AoC, dtype=str)
-
+def first_star() -> bool:
     f_1 = np.vectorize(extract_head_and_tail_digist)
-    result = f_1(inputs).sum()
+    result = f_1(INPUTS).sum()
+    return 54708 == result
 
-    assert 54708 == result
 
+def second_star() -> bool:
     f_2 = np.vectorize(extract_head_and_last_digit_with_words)
-    result = f_2(inputs).sum()
-
-    assert 54087 == result
+    result = f_2(INPUTS).sum()
+    return 54087 == result
