@@ -1,2 +1,5 @@
 __pycache__
 .pytest_cache
+
+#For node
+2025/node_modules
